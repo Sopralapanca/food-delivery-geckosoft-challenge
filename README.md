@@ -145,7 +145,7 @@ The server will then send the reviews to the Groq API and receive the prediction
 Once the predictions are received, the server will display them on the webpage along with the original reviews and ratings.
 Also, a performance evaluation is done by comparing the predicted ratings with the original ones.
 
-The backend is developed using Node.js and Express.js, and it is stored in the `app.js` file.
+The server is developed using Node.js and Express.js is used to handle file uploads, `app.js` provides the implementation of the backend.
 To run the application, npm, Node.js and other dependencies must be installed.
 After npm and Node.js are installed, other dependencies can be installed by running the command 
 

@@ -2,9 +2,89 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>$Title$</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSV Uploader</title>
+  <script defer src="main.js"></script>
+  <style>
+      body {
+          margin: 0;
+          font-family: Arial, sans-serif;
+          display: flex;
+          justify-content: center;
+      }
+
+      .container {
+          text-align: center;
+          width: 100%;
+          max-width: 800px;
+          padding: 20px;
+      }
+
+      h1, h2 {
+          margin: 20px 0;
+      }
+
+      form {
+          margin-bottom: 20px;
+      }
+
+      table {
+          margin: 20px auto; /* Center the table horizontally */
+          border-collapse: collapse;
+          width: 100%; /* Optional: Full width */
+      }
+
+      table, th, td {
+          border: 1px solid black;
+          padding: 10px;
+      }
+
+      thead {
+          background-color: #f4f4f4;
+      }
+
+      .precision-result {
+          margin-top: 20px;
+          font-size: 18px;
+      }
+  </style>
 </head>
 <body>
-$END$
+  <div class="container">
+    <h1>Food and delivery ratings model</h1>
+
+    <!-- Form to upload CSV file -->
+    <form id="csv-form">
+      <input type="file" id="csv-file" accept=".csv" required />
+      <label for="threshold">Threshold (0 to 1):</label>
+      <input type="number" id="threshold" step="0.01" min="0" max="1" value="0.5" required>
+      <button type="submit">Upload and Process</button>
+    </form>
+
+    <div class="precision-result" id="precision-result"></div>
+
+    <!-- Display the API response -->
+    <h2>API Responses:</h2>
+    <table id="results-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Review</th>
+          <th>Food Rating</th>
+          <th>Delivery Rating</th>
+          <th>Acceptance Score</th>
+          <th>Food Rating (llama)</th>
+          <th>Delivery Rating (llama)</th>
+          <th>Acceptance Score (llama)</th>
+        </tr>
+      </thead>
+      <tbody id="results-body">
+        <!-- Results loaded dynamically -->
+      </tbody>
+    </table>
+  </div>
+
+
+
 </body>
 </html>

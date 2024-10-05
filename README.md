@@ -21,12 +21,13 @@ Imagine a food delivery company whose service is reviewed by customers. Reviews 
 
 ### 1. Model Desing
 Assuming to have a dataset containing reviews, food and delivery ratings, and approval/rejection labels, we can design a model that predicts food and delivery ratings just from the textual comment.
-This is a typical NLP problem where we can use models such as BERT (or similar) to extract information from the text and then use one or more layers of a neural network to perform the regression or classification task. So the first step is to use a pre-trained LLM fine-tuned for a classification tasks in this case.
+This is a typical NLP problem where we can use state-of-the-art transformers-like architectures models to extract information from the text and then use one or more layers of a neural network to perform the regression or classification task. 
+For example, one of the most known models for this task is BERT. It is possible to use the encoder part of a pre-trained BERT model to extract embeddings from the text and then use a neural network to predict the ratings.
 
-BERT alone may be not enough to extract relevant information from the text. So an approach could be to use classical NLP techniques to preprocess the text and extract information like text length, number of words, number of positive/negative words, etc, and encode this information as a vector. We can use a simple neural network composed of one or more hidden layers to learn a representation of this information and fix the dimensionality of the output. 
-Eventually a neural network layer can be used too on top of the BERT model to fix the dimensionality of BERT ebmeddings and reduce its size.
-This make it easier to combine it with the output of the neural network that processes the information extracted from the text.
-We can then concatenate BERT encodings with the encodings of the information extracted from the text to obtain a single vector that contains all the information needed to predict the ratings.
+
+BERT alone may be not enough to extract relevant information. So an approach could be to use classical NLP techniques to preprocess the text and extract information like text length, number of words, number of positive/negative words, etc, and encode this information as a vector. We can use a simple neural network composed of one or more hidden layers to learn a representation of this information and fix the dimensionality of the output. 
+Eventually a neural network layer can be used too on top of BERT to fix the dimensionality of the embeddings and reduce its size.
+We can then concatenate the two different encodings to obtain a single vector that contains all the information needed to predict the ratings.
 
 Since the model must perform multiple tasks, we need a multi-output neural network. In particular, we can use the combined information gathered from the previous steps and implement a neural network with three separate branches. Each branch will perform a different task: one for the food rating, one for the delivery rating, and one for the approval/rejection task.
 In particular, food and delivery ratings can be seen as classification tasks since the model must predict a discrete value between 1 and 5, so we can use a softmax layer to predict the ratings, while the approval or rejection task can be seen as binary classification task, so we can use a sigmoid layer to predict the approval/rejection label.

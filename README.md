@@ -144,6 +144,7 @@ Also, the webpage provide a threshold input where the user can set the value for
 The server will then send the reviews to the Groq API and receive the predictions in response. 
 Once the predictions are received, the server will display them on the webpage along with the original reviews and ratings.
 Also, a performance evaluation is done by comparing the predicted ratings with the original ones.
+Accuracy metric is computed, eventually othrr mettics can per calculated like the F1 score.
 
 The server is developed using Node.js and Express.js is used to handle file uploads, `app.js` provides the implementation of the backend.
 To run the application, npm, Node.js and other dependencies must be installed.
